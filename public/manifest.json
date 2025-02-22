@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Infibox",
+  "version": "1.0",
+  "description": "The ultimate browser extension for developer productivity",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "infibox-48.png",
+    "256": "infibox-256.png"
+  },
+  "permissions": [
+    "contextMenus",
+    "clipboardWrite",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "commands": {
+    "toggle-toolbox": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Toggle Developer Toolbox Overlay"
+    }
+  },
+  "options_page": "options.html",
+  "omnibox": {
+    "keyword": "infi"
+  }
+}
