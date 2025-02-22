@@ -1,13 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/infibox-logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infibox - Options</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="options.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>CMDK Extension Settings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #333;
+    }
+    .section {
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CMDK Extension Settings</h1>
+    <form id="settings-form">
+      <div class="section">
+        <label for="primaryColor">Primary Color (CSS variable --primary):</label>
+        <input type="text" id="primaryColor" placeholder="#000000">
+      </div>
+      <div class="section">
+        <label>
+          <input type="checkbox" id="enableContextMenus">
+          Enable Context Menus
+        </label>
+      </div>
+      <div class="section">
+        <label for="customActions">Custom Action Scripts (JSON format):</label>
+        <textarea id="customActions" rows="6" placeholder='[{"name": "My Action", "shortcut": "ma", "requiresInput": true, "code": "return body.toUpperCase();"}]'></textarea>
+      </div>
+      <button type="submit">Save Settings</button>
+    </form>
+  </div>
+  <script>
+    // Default settings
+    const defaultSettings = {
+      primaryColor: "#000000",
+      enableContextMenus: true,
+      customActions: []
+    };
+    
+    // Load settings using chrome.storage.local
+    chrome.storage.local.get(defaultSettings, (items) => {
+      document.getElementById("primaryColor").value = items.primaryColor;
+      document.getElementById("enableContextMenus").checked = items.enableContextMenus;
+      document.getElementById("customActions").value = JSON.stringify(items.customActions, null, 2);
+    });
+    
+    document.getElementById("settings-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      let customActions = [];
+      try {
+        customActions = JSON.parse(document.getElementById("customActions").value);
+      } catch (err) {
+        alert("Invalid JSON in custom actions.");
+        return;
+      }
+      const newSettings = {
+        primaryColor: document.getElementById("primaryColor").value,
+        enableContextMenus: document.getElementById("enableContextMenus").checked,
+        customActions: customActions
+      };
+      chrome.storage.local.set(newSettings, () => {
+        alert("Settings saved!");
+      });
+    });
+  </script>
+</body>
 </html>

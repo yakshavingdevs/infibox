@@ -10,12 +10,7 @@
     "48": "infibox-48.png",
     "256": "infibox-256.png"
   },
-  "permissions": [
-    "contextMenus",
-    "clipboardWrite",
-    "activeTab",
-    "scripting"
-  ],
+  "permissions": ["contextMenus", "scripting", "storage"],
   "background": {
     "service_worker": "background.js"
   },
@@ -23,7 +18,8 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "css": ["content.css"]
+      "css": ["content.css"],
+      "run_at": "document_idle"
     }
   ],
   "commands": {
