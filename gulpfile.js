@@ -8,6 +8,7 @@ const config = {
   scriptTargets: {
     background: "src/background.js",
     content: "src/content.js",
+    cmdk: "src/cmdk.js",
     options: "src/options.js",
     popup: "src/popup.js",
   },
