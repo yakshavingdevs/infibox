@@ -4,39 +4,30 @@
   "version": "1.0",
   "description": "The ultimate browser extension for developer productivity",
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   },
   "icons": {
-    "48": "infibox-48.png",
-    "256": "infibox-256.png"
+    "48": "img/infibox-48.png",
+    "256": "img/infibox-256.png"
   },
   "permissions": ["contextMenus", "scripting", "storage"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background/index.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js","cmdk.js"],
-      "css": ["content.css"],
+      "js": ["js/content/index.js"],
+      "css": ["css/content.css"],
       "run_at": "document_idle"
     }
   ],
-  "commands": {
-    "toggle-toolbox": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y"
-      },
-      "description": "Toggle Developer Toolbox Overlay"
-    }
-  },
-  "options_page": "options.html",
+  "options_page": "html/options.html",
   "omnibox": {
     "keyword": "infi"
   },
   "web_accessible_resources": [{
     "matches": ["<all_urls>"],
-    "resources": ["content_worker.js","content.css"]
+    "resources": ["css/content.css"]
   }]
 }
