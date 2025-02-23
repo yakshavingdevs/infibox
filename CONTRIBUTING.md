@@ -4,19 +4,19 @@
 
 ### Ways you can contribute
 
-1. Have questions or ideas or want to discuss the future of this project, please [start a GitHub discussion](https://github.com/yakshavingdevs/datadance/discussions/new/choose).
+1. Have questions or ideas or want to discuss the future of this project, please [start a GitHub discussion](https://github.com/yakshavingdevs/infibox/discussions/new/choose).
 
-2. Did you find a bug or want to create a feature request or found missing documentation? [Create an issue](https://github.com/yakshavingdevs/datadance/issues/new). We only rely on [GitHub's default labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#about-default-labels) for managing all our issues, so adding appropriate labels from that list helps everyone contribute more effectively.
+2. Did you find a bug or want to create a feature request or found missing documentation? [Create an issue](https://github.com/yakshavingdevs/infibox/issues/new). We only rely on [GitHub's default labels](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels#about-default-labels) for managing all our issues, so adding appropriate labels from that list helps everyone contribute more effectively.
 
-3. Want to fix a bug, add a new feature or fix missing documentation? Go ahead and [create a pull request](https://github.com/yakshavingdevs/datadance/compare). Making sure you reference an issue helps us understand what you are trying to solve.
+3. Want to fix a bug, add a new feature or fix missing documentation? Go ahead and [create a pull request](https://github.com/yakshavingdevs/infibox/compare). Making sure you reference an issue helps us understand what you are trying to solve.
 
 ## Your First Contribution
 
 Unsure, where to start?
 
-If you are a beginner start with the issues labeled "Good first issue": [Good first issues list](https://github.com/yakshavingdevs/datadance/labels/good%20first%20issue)
+If you are a beginner start with the issues labeled "Good first issue": [Good first issues list](https://github.com/yakshavingdevs/infibox/labels/good%20first%20issue)
 
-Otherwise, go with any issue marked as "Help wanted": [Help wanted issues list](https://github.com/yakshavingdevs/datadance/labels/help%20wanted)
+Otherwise, go with any issue marked as "Help wanted": [Help wanted issues list](https://github.com/yakshavingdevs/infibox/labels/help%20wanted)
 
 ### Resources to contribute to open source projects if you have not contributed before
 
@@ -43,4 +43,4 @@ Also, please do read our [Code of Conduct](/CODE_OF_CONDUCT.md) and follow it to
 
 ## Community
 
-All our community discussion is currently hosted only on [GitHub discussions](https://github.com/yakshavingdevs/datadance/discussions/new/choose), so feel free to participate there.
+All our community discussion is currently hosted only on [GitHub discussions](https://github.com/yakshavingdevs/infibox/discussions/new/choose), so feel free to participate there.
