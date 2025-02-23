@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://infibox.org">
-  <img src="public/infibox-256.png" alt="Infibox Logo" height="128" />
+  <img src="public/img/infibox-256.png" alt="Infibox Logo" height="128" />
   </a>
 
   <h3>Infibox</h3>
