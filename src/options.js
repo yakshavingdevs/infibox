@@ -1,5 +1,4 @@
 (() => {
-    // Default settings without custom actions
     const DEFAULT_SETTINGS = {
         primaryColor: "#000000",
         enableContextMenus: true,
