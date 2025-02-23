@@ -28,6 +28,6 @@
   },
   "web_accessible_resources": [{
     "matches": ["<all_urls>"],
-    "resources": ["css/content.css"]
+    "resources": ["css/content.css", "img/infibox-logo.svg"]
   }]
 }

@@ -2,6 +2,8 @@ import { globalState } from "../state";
 import { setRenderMode } from "../render";
 import { defaultCommands } from "../commands";
 import { shadow } from "../shadow";
+import { hideCmdk } from "../index";
+import { getHeaderHTML, attachHeaderEvents } from "../header";
 
 export function executeCommand(result) {
   if (!result || (!result.cmd && !result.name)) {

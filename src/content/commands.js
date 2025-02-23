@@ -13,7 +13,7 @@ export const defaultCommands = [
       inline: true,
       action: () => {
           globalState.currentToolCommand = { name: "Help", processInput: () => "" };
-          globalState.currentResult = "<pre>" + getHelpText(commands) + "</pre>";
+          globalState.currentResult = "<pre>" + getHelpText(defaultCommands) + "</pre>";
           setRenderMode("result");
       },
   },

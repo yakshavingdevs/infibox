@@ -1,4 +1,5 @@
 import { setRenderMode } from "../../content/render";
+import { globalState } from "../../content/state";
 
 export const timeCommands = {
   name: "Time Tools",
