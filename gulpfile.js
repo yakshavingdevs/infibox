@@ -6,11 +6,10 @@ import path from "path";
 
 const config = {
   scriptTargets: {
-    background: "src/background.js",
-    content: "src/content.js",
-    cmdk: "src/cmdk.js",
-    options: "src/options.js",
-    popup: "src/popup.js",
+    background: "src/background/index.js",
+    content: "src/content/index.js",
+    options: "src/options/index.js",
+    popup: "src/popup/index.js",
   },
   assetsGlob: "public/**/*",
   outputDirectory: "dist",
@@ -22,13 +21,13 @@ export const bundleScripts = () => {
     .pipe(
       esbuild({
         bundle: true,
-        minify: true, 
+        minify: false, 
         format: "iife",
-        outdir: "./",
+        outdir: "./js",
         resolveExtensions: [".js"],
-        alias: { "@": path.resolve("./src") },
       })
     )
+    .on('error', (error) => console.log(error))
     .pipe(rename({ extname: ".js" }))
     .pipe(gulp.dest(config.outputDirectory));
 };
