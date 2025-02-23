@@ -1,6 +1,7 @@
 import { globalState } from "../state";
 import { setRenderMode } from "../render";
 import { shadow } from "../shadow";
+import { getHeaderHTML, attachHeaderEvents } from "../header";
 
 export function processToolInput(args) {
   try {

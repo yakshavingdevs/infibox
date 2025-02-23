@@ -2,7 +2,6 @@ import gulp from "gulp";
 import esbuild from "gulp-esbuild";
 import rename from "gulp-rename";
 import clean from "gulp-clean";
-import path from "path";
 
 const config = {
   scriptTargets: {

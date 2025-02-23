@@ -1,6 +1,7 @@
 import { globalState } from "../content/state";
 import { setRenderMode } from "../content/render";
 import { shadow } from "../content/shadow";
+import { getHeaderHTML, attachHeaderEvents } from "../content/header";
 
 export function saveTodoTasks() {
   chrome.storage.local.set({ cmdkTodoTasks: globalState.todoTasks });
