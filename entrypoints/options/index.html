@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infibox Settings</title>
+    <link rel="stylesheet" href="/css/options.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Infibox Settings</h1>
+        <form id="settings-form">
+            <section class="form-section">
+                <label for="primary-color">Primary Color (CSS variable --primary):</label>
+                <input type="color" id="primary-color" name="primary-color" value="#000000">
+            </section>
+            <section class="form-section">
+                <label>
+                    <input type="checkbox" id="enable-context-menus" name="enable-context-menus">
+                    Enable Context Menus
+                </label>
+            </section>
+            <button type="submit">Save Settings</button>
+        </form>
+    </div>
+    <script type="module" src="./app.js"></script>
+</body>
+</html>

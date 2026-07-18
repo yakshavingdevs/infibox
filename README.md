@@ -38,16 +38,21 @@ git clone https://github.com/yakshavingdevs/infibox.git
 npm i
 ```
 
-3. Build the source files
+3. Start the development server (with HMR)
+```
+npm run dev
+```
+
+4. Build the extension for production
 ```
 npm run build
 ```
 
-We use [Gulp](https://gulpjs.com/) and [esbuild](https://esbuild.github.io/) for bundling our Javascript files, for any transformations and for copy all assets into the build directory (dist/ in this case).
+We use [WXT](https://wxt.dev) for building the extension. It handles bundling with Vite, generates the manifest, and provides HMR during development.
 
-4. Open the extensions page in Chrome by visiting [chrome://extensions/](chrome://extensions/)
+5. Open the extensions page in Chrome by visiting [chrome://extensions/](chrome://extensions/)
 
-5. Click on the load unpacked button and select your dist/ directory inside your local repo directory that was created after the build process to load your Chrome extension and have fun!
+6. Click on the "Load unpacked" button and select the `.output/` directory (development) or `dist/` directory (production) to load your Chrome extension.
 
 ### Contributing
 

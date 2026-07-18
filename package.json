@@ -4,16 +4,19 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
     "lint": "eslint",
-    "build": "gulp"
+    "postinstall": "wxt prepare"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/chrome": "^0.2.2",
     "eslint": "^9.21.0",
     "globals": "^16.0.0",
-    "gulp": "^5.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-esbuild": "^0.14.0",
-    "gulp-rename": "^2.0.0"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.64.0",
+    "wxt": "^0.19.0"
   }
 }
