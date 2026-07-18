@@ -1,6 +1,5 @@
 import type { Command } from "../../types";
-import { setRenderMode } from "../../../entrypoints/content/render";
-import { globalState } from "../../../entrypoints/content/state";
+import { setAppMode, setAppCurrentResult, setAppToolCommand } from "../../../entrypoints/content/app-bridge";
 
 export const timeCommands: Command = {
   name: "Time Tools",
@@ -15,12 +14,12 @@ export const timeCommands: Command = {
           usage: "time now - No input needed.",
           inline: true,
           action: () => {
-              globalState.currentToolCommand = {
+              setAppToolCommand({
                   name: "Current Timestamp",
                   processInput: () => "",
-              };
-              globalState.currentResult = Math.floor(Date.now() / 1000).toString();
-              setRenderMode("result");
+              });
+              setAppCurrentResult(Math.floor(Date.now() / 1000).toString());
+              setAppMode("result");
           },
       },
       {

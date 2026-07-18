@@ -16,6 +16,7 @@ export default tseslint.config(
         { argsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-require-imports": "off",
+      "no-empty": ["error", { allowEmptyCatch: true }],
     },
   },
 );

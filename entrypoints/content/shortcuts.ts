@@ -1,6 +1,5 @@
 import type { Command, MatchResult } from "../../src/types";
-import { globalState } from "./state";
-import { setRenderMode } from "./render";
+import { setAppMode, setAppCurrentResult, setAppToolCommand } from "./app-bridge";
 import { defaultCommands } from "./commands";
 
 export function matchShortcut(buffer: string, list: Command[]): MatchResult {
@@ -44,10 +43,10 @@ export function getRegisteredShortcuts(list: Command[] = defaultCommands, prefix
 }
 
 export function showRegisteredShortcuts(): void {
-  globalState.currentToolCommand = {
+  setAppToolCommand({
       name: "Registered Shortcuts",
       processInput: (body) => typeof body === "string" ? body : "",
-  };
-  globalState.currentResult = "<pre>" + getRegisteredShortcuts() + "</pre>";
-  setRenderMode("result");
+  });
+  setAppCurrentResult("<pre>" + getRegisteredShortcuts() + "</pre>");
+  setAppMode("result");
 }

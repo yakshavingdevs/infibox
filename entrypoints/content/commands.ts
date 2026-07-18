@@ -1,8 +1,7 @@
 import type { Command } from "../../src/types";
 import { getHelpText } from "./help";
 import { showRegisteredShortcuts } from "./shortcuts";
-import { globalState } from "./state";
-import { setRenderMode } from "./render";
+import { setAppMode, setAppCurrentResult, setAppToolCommand } from "./app-bridge";
 import { allUtilityCommands } from "../../src/shared/commands";
 
 export const defaultCommands: Command[] = [
@@ -13,9 +12,9 @@ export const defaultCommands: Command[] = [
       usage: "Type '?' or 'help' to see this.",
       inline: true,
       action: () => {
-          globalState.currentToolCommand = { name: "Help", processInput: () => "" };
-          globalState.currentResult = "<pre>" + getHelpText(defaultCommands) + "</pre>";
-          setRenderMode("result");
+          setAppToolCommand({ name: "Help", processInput: () => "" });
+          setAppCurrentResult("<pre>" + getHelpText(defaultCommands) + "</pre>");
+          setAppMode("result");
       },
   },
   {
@@ -32,7 +31,7 @@ export const defaultCommands: Command[] = [
       inline: true,
       help: "Manage a simple to-do list.",
       usage: "todo - Opens the to-do interface.",
-      action: () => setRenderMode("todo"),
+      action: () => setAppMode("todo"),
   },
   ...allUtilityCommands
 ];

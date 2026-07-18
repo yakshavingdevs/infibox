@@ -1,4 +1,5 @@
 import { defineConfig } from "wxt";
+import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
   manifestVersion: 3,
@@ -12,8 +13,11 @@ export default defineConfig({
     web_accessible_resources: [
       {
         matches: ["<all_urls>"],
-        resources: ["css/content.css", "img/infibox-logo.svg"],
+        resources: ["img/infibox-logo.svg"],
       },
     ],
   },
+  vite: () => ({
+    plugins: [solidPlugin()],
+  }),
 });
