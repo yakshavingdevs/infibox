@@ -3,12 +3,14 @@ import { setAppMode, setAppCurrentResult, setAppToolCommand } from "../../../ent
 
 export const timeCommands: Command = {
   name: "Time Tools",
+  id: "cmdk-time",
   shortcut: "time",
   help: "Tools for handling timestamps.",
   usage: "time <subcommand> - Work with timestamps.",
   children: [
       {
           name: "Current Timestamp",
+          id: "cmdk-time-now",
           shortcut: "now",
           help: "Displays the current Unix timestamp in seconds.",
           usage: "time now - No input needed.",
@@ -24,6 +26,7 @@ export const timeCommands: Command = {
       },
       {
           name: "Format Timestamp",
+          id: "cmdk-time-fmt",
           shortcut: "fmt",
           requiresInput: true,
           type: "number",

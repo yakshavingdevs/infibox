@@ -2,60 +2,14 @@ import { render } from "solid-js/web";
 import { defineContentScript } from "wxt/sandbox";
 import { createShadowRootUi } from "wxt/client";
 import type { Command } from "../../src/types";
+import { buildContextCommandMap } from "../../src/shared/commands";
 import { defaultCommands } from "./commands";
 import { initShadow, isShadowMounted, destroyShadow, getShadowHost } from "./shadow-context";
 import { setAppToolCommand, setAppMode, setAppPrefill } from "./app-bridge";
 import App from "./App";
 import "./content.css";
 
-const contextCommandMap: Record<string, string> = {
-  "cmdk-base64-encode": "Base64 Tool > Base64 Encode",
-  "cmdk-num-hex": "Number Tools > Decimal to Hex",
-  "cmdk-num-dec": "Number Tools > Hex to Decimal",
-  "cmdk-num-bin": "Number Tools > Decimal to Binary",
-  "cmdk-num-decbin": "Number Tools > Binary to Decimal",
-  "cmdk-json-parse": "JSON Tools > Parse JSON",
-  "cmdk-json-string": "JSON Tools > Stringify JSON",
-  "cmdk-hash": "Hash Tool",
-  "cmdk-time-now": "Time Tools > Current Timestamp",
-  "cmdk-time-fmt": "Time Tools > Format Timestamp",
-  "cmdk-enc-urlenc": "Encode/Decode Tools > URL Encode",
-  "cmdk-enc-urldec": "Encode/Decode Tools > URL Decode",
-  "cmdk-enc-htmlesc": "Encode/Decode Tools > HTML Escape",
-  "cmdk-enc-htmlunesc": "Encode/Decode Tools > HTML Unescape",
-  "cmdk-str-rev": "String Tools > Reverse",
-  "cmdk-str-sub": "String Tools > Substring",
-  "cmdk-str-upper": "String Tools > Change Case > Uppercase",
-  "cmdk-str-lower": "String Tools > Change Case > Lowercase",
-  "cmdk-str-cap": "String Tools > Change Case > Capitalize",
-  "cmdk-str-title": "String Tools > Change Case > Title Case",
-  "cmdk-str-trim-full": "String Tools > Trim > Full",
-  "cmdk-str-trim-left": "String Tools > Trim > Left",
-  "cmdk-str-trim-right": "String Tools > Trim > Right",
-  "cmdk-str-rmspaces": "String Tools > Remove Extra Spaces",
-  "cmdk-str-wordcnt": "String Tools > Count > Word Count",
-  "cmdk-str-charcnt": "String Tools > Count > Character Count",
-  "cmdk-str-linecnt": "String Tools > Count > Line Count",
-  "cmdk-str-sortlines": "String Tools > Lines > Sort Lines",
-  "cmdk-str-revlines": "String Tools > Lines > Reverse Lines",
-  "cmdk-str-shufllines": "String Tools > Lines > Shuffle Lines",
-  "cmdk-str-rmdup": "String Tools > Lines > Remove Duplicates",
-  "cmdk-str-rep": "String Tools > Replace",
-  "cmdk-str-split": "String Tools > Split",
-  "cmdk-str-join": "String Tools > Join",
-  "cmdk-str-repeat": "String Tools > Repeat",
-  "cmdk-str-pad-left": "String Tools > Pad > Left",
-  "cmdk-str-pad-right": "String Tools > Pad > Right",
-  "cmdk-str-extract-numbers": "String Tools > Extract > Numbers",
-  "cmdk-str-extract-letters": "String Tools > Extract > Letters",
-  "cmdk-str-extract-words": "String Tools > Extract > Words",
-  "cmdk-hash-simple": "Hash Tools > Simple Hash",
-  "cmdk-hash-fnv1a": "Hash Tools > FNV-1a",
-  "cmdk-hash-djb2": "Hash Tools > djb2",
-  "cmdk-hash-sdbm": "Hash Tools > sdbm",
-  "cmdk-hash-murmur": "Hash Tools > Murmur3-like",
-  "cmdk-todo": "To-Do",
-};
+const contextCommandMap = buildContextCommandMap(defaultCommands);
 
 function searchCommandByPath(path: string, list: Command[]): Command | null {
   const parts = path.split(">").map((s) => s.trim().toLowerCase());

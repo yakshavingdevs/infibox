@@ -7,6 +7,8 @@ export interface Kwarg {
 
 export interface Command {
   name: string;
+  id?: string;
+  contextMenuTitle?: string;
   shortcut?: string;
   help?: string;
   usage?: string;

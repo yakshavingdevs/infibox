@@ -2,12 +2,14 @@ import type { Command } from "../../types";
 
 export const jsonCommands: Command = {
   name: "JSON Tools",
+  id: "cmdk-json",
   shortcut: "json",
   help: "Tools for JSON manipulation.",
   usage: "json <subcommand> - Parse or stringify JSON.",
   children: [
       {
           name: "Parse JSON",
+          id: "cmdk-json-parse",
           shortcut: "parse",
           requiresInput: true,
           type: "textarea",
@@ -25,6 +27,7 @@ export const jsonCommands: Command = {
       },
       {
           name: "Stringify JSON",
+          id: "cmdk-json-string",
           shortcut: "string",
           requiresInput: true,
           type: "textarea",

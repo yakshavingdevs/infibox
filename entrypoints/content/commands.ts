@@ -27,6 +27,7 @@ export const defaultCommands: Command[] = [
   },
   {
       name: "To-Do",
+      id: "cmdk-todo",
       shortcut: "todo",
       inline: true,
       help: "Manage a simple to-do list.",

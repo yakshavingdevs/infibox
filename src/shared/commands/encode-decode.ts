@@ -2,12 +2,14 @@ import type { Command } from "../../types";
 
 export const encodeDecodeCommands: Command = {
   name: "Encode/Decode Tools",
+  id: "cmdk-enc",
   shortcut: "enc",
   help: "Tools for encoding and decoding text.",
   usage: "enc <subcommand> - Choose an encoding/decoding operation.",
   children: [
       {
           name: "URL Encode",
+          id: "cmdk-enc-urlenc",
           shortcut: "urlenc",
           requiresInput: true,
           type: "textarea",
@@ -17,6 +19,7 @@ export const encodeDecodeCommands: Command = {
       },
       {
           name: "URL Decode",
+          id: "cmdk-enc-urldec",
           shortcut: "urldec",
           requiresInput: true,
           type: "textarea",
@@ -32,6 +35,7 @@ export const encodeDecodeCommands: Command = {
       },
       {
           name: "HTML Escape",
+          id: "cmdk-enc-htmlesc",
           shortcut: "htmlesc",
           requiresInput: true,
           type: "textarea",
@@ -47,6 +51,7 @@ export const encodeDecodeCommands: Command = {
       },
       {
           name: "HTML Unescape",
+          id: "cmdk-enc-htmlunesc",
           shortcut: "htmlunesc",
           requiresInput: true,
           type: "textarea",

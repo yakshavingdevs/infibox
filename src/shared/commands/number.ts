@@ -2,12 +2,14 @@ import type { Command } from "../../types";
 
 export const numberCommands: Command = {
   name: "Number Tools",
+  id: "cmdk-num",
   shortcut: "num",
   help: "Tools for number conversions.",
   usage: "num <subcommand> - Convert numbers between bases.",
   children: [
       {
           name: "Decimal to Hex",
+          id: "cmdk-num-hex",
           shortcut: "hex",
           requiresInput: true,
           type: "number",
@@ -21,6 +23,7 @@ export const numberCommands: Command = {
       },
       {
           name: "Hex to Decimal",
+          id: "cmdk-num-dec",
           shortcut: "dec",
           requiresInput: true,
           type: "text",
@@ -34,6 +37,7 @@ export const numberCommands: Command = {
       },
       {
           name: "Decimal to Binary",
+          id: "cmdk-num-bin",
           shortcut: "bin",
           requiresInput: true,
           type: "number",
@@ -47,6 +51,7 @@ export const numberCommands: Command = {
       },
       {
           name: "Binary to Decimal",
+          id: "cmdk-num-decbin",
           shortcut: "decbin",
           requiresInput: true,
           type: "text",

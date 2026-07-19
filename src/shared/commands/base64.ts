@@ -8,6 +8,7 @@ export const base64Commands: Command = {
   children: [
       {
           name: "Base64 Encode",
+          id: "cmdk-base64-encode",
           shortcut: "enc",
           requiresInput: true,
           type: "textarea",

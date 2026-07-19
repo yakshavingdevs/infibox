@@ -2,12 +2,14 @@ import type { Command } from "../../types";
 
 export const hashCommand: Command = {
   name: "Hash Tools",
+  id: "cmdk-hash",
   shortcut: "hash",
   help: "Tools for generating non-cryptographic hashes.",
   usage: "hash <subcommand> - Generate a hash from text.",
   children: [
     {
       name: "Simple Hash",
+      id: "cmdk-hash-simple",
       shortcut: "simple",
       requiresInput: true,
       type: "textarea",
@@ -24,6 +26,7 @@ export const hashCommand: Command = {
     },
     {
       name: "FNV-1a",
+      id: "cmdk-hash-fnv1a",
       shortcut: "fnv1a",
       requiresInput: true,
       type: "textarea",
@@ -41,6 +44,7 @@ export const hashCommand: Command = {
     },
     {
       name: "djb2",
+      id: "cmdk-hash-djb2",
       shortcut: "djb2",
       requiresInput: true,
       type: "textarea",
@@ -57,6 +61,7 @@ export const hashCommand: Command = {
     },
     {
       name: "sdbm",
+      id: "cmdk-hash-sdbm",
       shortcut: "sdbm",
       requiresInput: true,
       type: "textarea",
@@ -73,6 +78,7 @@ export const hashCommand: Command = {
     },
     {
       name: "Murmur3-like",
+      id: "cmdk-hash-murmur",
       shortcut: "murmur",
       requiresInput: true,
       type: "textarea",

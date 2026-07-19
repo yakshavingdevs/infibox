@@ -2,12 +2,14 @@ import type { Command } from "../../types";
 
 export const stringCommands: Command = {
   name: "String Tools",
+  id: "cmdk-str",
   shortcut: "str",
   help: "Tools for string operations.",
   usage: "str <subcommand> - Perform string manipulations.",
   children: [
     {
       name: "Reverse",
+      id: "cmdk-str-rev",
       shortcut: "rev",
       requiresInput: true,
       type: "textarea",
@@ -17,6 +19,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Substring",
+      id: "cmdk-str-sub",
       shortcut: "sub",
       requiresInput: true,
       type: "textarea",
@@ -36,12 +39,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Change Case",
+      id: "cmdk-str-case",
       shortcut: "case",
       help: "Change the case of text.",
       usage: "str case <subcommand> - Change text case.",
       children: [
         {
           name: "Uppercase",
+          id: "cmdk-str-upper",
           shortcut: "upper",
           requiresInput: true,
           type: "textarea",
@@ -51,6 +56,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Lowercase",
+          id: "cmdk-str-lower",
           shortcut: "lower",
           requiresInput: true,
           type: "textarea",
@@ -60,6 +66,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Capitalize",
+          id: "cmdk-str-cap",
           shortcut: "cap",
           requiresInput: true,
           type: "textarea",
@@ -73,6 +80,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Title Case",
+          id: "cmdk-str-title",
           shortcut: "title",
           requiresInput: true,
           type: "textarea",
@@ -89,12 +97,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Trim",
+      id: "cmdk-str-trim",
       shortcut: "trim",
       help: "Removes whitespace from text.",
       usage: "str trim <subcommand> - Trim text.",
       children: [
         {
           name: "Full",
+          id: "cmdk-str-trim-full",
           shortcut: "full",
           requiresInput: true,
           type: "textarea",
@@ -104,6 +114,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Left",
+          id: "cmdk-str-trim-left",
           shortcut: "left",
           requiresInput: true,
           type: "textarea",
@@ -113,6 +124,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Right",
+          id: "cmdk-str-trim-right",
           shortcut: "right",
           requiresInput: true,
           type: "textarea",
@@ -124,6 +136,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Remove Extra Spaces",
+      id: "cmdk-str-rmspaces",
       shortcut: "rmspaces",
       requiresInput: true,
       type: "textarea",
@@ -133,12 +146,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Count",
+      id: "cmdk-str-count",
       shortcut: "count",
       help: "Count elements in text.",
       usage: "str count <subcommand> - Count text elements.",
       children: [
         {
           name: "Word Count",
+          id: "cmdk-str-wordcnt",
           shortcut: "wordcnt",
           requiresInput: true,
           type: "textarea",
@@ -148,6 +163,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Character Count",
+          id: "cmdk-str-charcnt",
           shortcut: "charcnt",
           requiresInput: true,
           type: "textarea",
@@ -161,6 +177,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Line Count",
+          id: "cmdk-str-linecnt",
           shortcut: "linecnt",
           requiresInput: true,
           type: "textarea",
@@ -176,12 +193,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Lines",
+      id: "cmdk-str-lines",
       shortcut: "lines",
       help: "Manipulate lines in text.",
       usage: "str lines <subcommand> - Manipulate text lines.",
       children: [
         {
           name: "Sort Lines",
+          id: "cmdk-str-sortlines",
           shortcut: "sortlines",
           requiresInput: true,
           type: "textarea",
@@ -201,6 +220,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Reverse Lines",
+          id: "cmdk-str-revlines",
           shortcut: "revlines",
           requiresInput: true,
           type: "textarea",
@@ -210,6 +230,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Shuffle Lines",
+          id: "cmdk-str-shufllines",
           shortcut: "shufllines",
           requiresInput: true,
           type: "textarea",
@@ -226,6 +247,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Remove Duplicates",
+          id: "cmdk-str-rmdup",
           shortcut: "rmdup",
           requiresInput: true,
           type: "textarea",
@@ -244,6 +266,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Replace",
+      id: "cmdk-str-rep",
       shortcut: "rep",
       requiresInput: true,
       type: "textarea",
@@ -263,6 +286,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Split",
+      id: "cmdk-str-split",
       shortcut: "split",
       requiresInput: true,
       type: "textarea",
@@ -275,6 +299,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Join",
+      id: "cmdk-str-join",
       shortcut: "join",
       requiresInput: true,
       type: "textarea",
@@ -287,6 +312,7 @@ export const stringCommands: Command = {
     },
     {
       name: "Repeat",
+      id: "cmdk-str-repeat",
       shortcut: "repeat",
       requiresInput: true,
       type: "textarea",
@@ -303,12 +329,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Pad",
+      id: "cmdk-str-pad",
       shortcut: "pad",
       help: "Pads text with a character.",
       usage: "str pad <subcommand> - Pad text.",
       children: [
         {
           name: "Left",
+          id: "cmdk-str-pad-left",
           shortcut: "left",
           requiresInput: true,
           type: "textarea",
@@ -327,6 +355,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Right",
+          id: "cmdk-str-pad-right",
           shortcut: "right",
           requiresInput: true,
           type: "textarea",
@@ -347,12 +376,14 @@ export const stringCommands: Command = {
     },
     {
       name: "Extract",
+      id: "cmdk-str-extract",
       shortcut: "extract",
       help: "Extracts text matching a pattern.",
       usage: "str extract <subcommand> - Extract text elements.",
       children: [
         {
           name: "Numbers",
+          id: "cmdk-str-extract-numbers",
           shortcut: "numbers",
           requiresInput: true,
           type: "textarea",
@@ -362,6 +393,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Letters",
+          id: "cmdk-str-extract-letters",
           shortcut: "letters",
           requiresInput: true,
           type: "textarea",
@@ -371,6 +403,7 @@ export const stringCommands: Command = {
         },
         {
           name: "Words",
+          id: "cmdk-str-extract-words",
           shortcut: "words",
           requiresInput: true,
           type: "textarea",
