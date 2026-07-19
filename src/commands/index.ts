@@ -1,4 +1,4 @@
-import type { Command, ContextMenuItem } from "../../types";
+import type { Command, ContextMenuItem } from "../types/index";
 import { base64Commands } from "./base64";
 import { encodeDecodeCommands } from "./encode-decode";
 import { hashCommand } from "./hash";

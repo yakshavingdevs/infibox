@@ -1,6 +1,7 @@
-import type { ContextMenuItem } from "../src/types";
+import type { ContextMenuItem } from "../src/types/index";
 import { defineBackground } from "wxt/sandbox";
-import { allUtilityCommands, buildContextMenuItems } from "../src/shared/commands";
+import { allUtilityCommands, buildContextMenuItems } from "../src/commands";
+import { STORAGE_KEYS, DEFAULTS } from "../src/constants";
 
 export default defineBackground(() => {
   const CONTEXT_MENU_ITEMS: ContextMenuItem[] = [
@@ -49,17 +50,20 @@ export default defineBackground(() => {
   }
 
   function applySettings(): void {
-    chrome.storage.local.get({ enableContextMenus: true }, (settings: Record<string, unknown>) => {
-      updateContextMenus(settings.enableContextMenus as boolean);
-    });
+    chrome.storage.local.get(
+      { [STORAGE_KEYS.ENABLE_CONTEXT_MENUS]: DEFAULTS.ENABLE_CONTEXT_MENUS },
+      (settings: Record<string, unknown>) => {
+        updateContextMenus(settings[STORAGE_KEYS.ENABLE_CONTEXT_MENUS] as boolean);
+      },
+    );
   }
 
   chrome.runtime.onStartup.addListener(applySettings);
   chrome.runtime.onInstalled.addListener(applySettings);
 
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && "enableContextMenus" in changes) {
-      updateContextMenus(changes.enableContextMenus.newValue as boolean);
+    if (area === "local" && STORAGE_KEYS.ENABLE_CONTEXT_MENUS in changes) {
+      updateContextMenus(changes[STORAGE_KEYS.ENABLE_CONTEXT_MENUS].newValue as boolean);
     }
   });
 

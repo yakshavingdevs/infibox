@@ -1,6 +1,6 @@
 import { createSignal, For, onMount } from "solid-js";
-import type { Command, SearchResult } from "../../src/types";
-import { globalSearch } from "./search";
+import type { Command, SearchResult } from "../../src/types/index";
+import { globalSearch } from "../utils/search";
 import CmdkHeader from "./CmdkHeader";
 
 interface Props {

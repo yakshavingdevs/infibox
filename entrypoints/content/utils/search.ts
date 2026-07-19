@@ -1,4 +1,4 @@
-import type { Command, SearchResult } from "../../src/types";
+import type { Command, SearchResult } from "../../src/types/index";
 
 export function globalSearch(
   query: string,

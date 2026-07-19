@@ -1,5 +1,6 @@
 import { createSignal, For, onMount } from "solid-js";
-import type { TodoTask } from "../../src/types";
+import type { TodoTask } from "../../src/types/index";
+import { getTodoTasks, saveTodoTasks } from "../../../src/stores/app";
 import CmdkHeader from "./CmdkHeader";
 
 interface Props {
@@ -13,15 +14,15 @@ export default function TodoView(props: Props) {
   let inputRef: HTMLInputElement | undefined;
 
   onMount(() => {
-    chrome.storage.local.get(["cmdkTodoTasks"], (result) => {
-      setTasks((result.cmdkTodoTasks as TodoTask[]) || []);
+    getTodoTasks().then((result) => {
+      setTasks(result || []);
     });
     inputRef?.focus();
   });
 
   function save(t: TodoTask[]) {
     setTasks(t);
-    chrome.storage.local.set({ cmdkTodoTasks: t });
+    saveTodoTasks(t);
   }
 
   function addTask() {

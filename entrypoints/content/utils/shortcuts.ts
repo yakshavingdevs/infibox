@@ -1,6 +1,5 @@
-import type { Command, MatchResult } from "../../src/types";
-import { setAppMode, setAppCurrentResult, setAppToolCommand } from "./app-bridge";
-import { defaultCommands } from "./commands";
+import type { Command, MatchResult } from "../../src/types/index";
+import { setMode, setCurrentToolCommand } from "../../../src/stores/app";
 
 export function matchShortcut(buffer: string, list: Command[]): MatchResult {
   let exact = null;
@@ -26,27 +25,10 @@ export function matchShortcut(buffer: string, list: Command[]): MatchResult {
   return { exact, partial };
 }
 
-export function getRegisteredShortcuts(list: Command[] = defaultCommands, prefix = ""): string {
-  let output = "";
-  list.forEach((cmd) => {
-      if (cmd?.shortcut) {
-          output += `${prefix}${cmd.name}: ${cmd.shortcut}\n`;
-      }
-      if (cmd?.children) {
-          output += getRegisteredShortcuts(
-              cmd.children,
-              prefix + cmd.name + " > ",
-          );
-      }
-  });
-  return output || "No shortcuts registered.";
-}
-
 export function showRegisteredShortcuts(): void {
-  setAppToolCommand({
+  setCurrentToolCommand({
       name: "Registered Shortcuts",
       processInput: (body) => typeof body === "string" ? body : "",
   });
-  setAppCurrentResult("<pre>" + getRegisteredShortcuts() + "</pre>");
-  setAppMode("result");
+  setMode("result");
 }

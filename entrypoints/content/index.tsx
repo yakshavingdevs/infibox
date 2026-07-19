@@ -1,13 +1,18 @@
 import { render } from "solid-js/web";
 import { defineContentScript } from "wxt/sandbox";
 import { createShadowRootUi } from "wxt/client";
-import type { Command } from "../../src/types";
-import { buildContextCommandMap } from "../../src/shared/commands";
+import type { Command } from "../../src/types/index";
+import { STORAGE_KEYS } from "../../src/constants";
+import { buildContextCommandMap } from "../../src/commands";
+import { initStore, setCurrentToolCommand, setPrefill, setMode, setCommandStack, setCurrentList, addTodoTask } from "../../src/stores/app";
 import { defaultCommands } from "./commands";
-import { initShadow, isShadowMounted, destroyShadow, getShadowHost } from "./shadow-context";
-import { setAppToolCommand, setAppMode, setAppPrefill } from "./app-bridge";
+import { initShadow, isShadowMounted, destroyShadow, getShadowHost } from "./utils/shadow-context";
 import App from "./App";
 import "./content.css";
+
+initStore();
+setCommandStack([defaultCommands]);
+setCurrentList(defaultCommands);
 
 const contextCommandMap = buildContextCommandMap(defaultCommands);
 
@@ -63,13 +68,9 @@ export default defineContentScript({
       }
     }
 
-    chrome.storage.local.get({ primaryColor: "#0d9488" }, (settings: Record<string, unknown>) => {
-      applyColor(settings.primaryColor as string);
-    });
-
     chrome.storage.onChanged.addListener((changes, area) => {
-      if (area === "local" && "primaryColor" in changes) {
-        applyColor(changes.primaryColor.newValue as string);
+      if (area === "local" && STORAGE_KEYS.PRIMARY_COLOR in changes) {
+        applyColor(changes[STORAGE_KEYS.PRIMARY_COLOR].newValue as string);
       }
     });
 
@@ -90,12 +91,8 @@ export default defineContentScript({
       const sel = request.selection as string;
 
       if (request.action === "cmdk-todo") {
-        chrome.storage.local.get(["cmdkTodoTasks"], (result) => {
-          const tasks = (result.cmdkTodoTasks || []) as { text: string; completed: boolean }[];
-          tasks.push({ text: sel, completed: false });
-          chrome.storage.local.set({ cmdkTodoTasks: tasks });
-          alert("Saved to To-Do");
-        });
+        addTodoTask({ text: sel, completed: false });
+        alert("Saved to To-Do");
         return;
       }
 
@@ -105,9 +102,9 @@ export default defineContentScript({
       if (!cmd) return;
 
       if (cmd.requiresInput) {
-        setAppToolCommand(cmd);
-        setAppPrefill(sel);
-        setAppMode("tool");
+        setCurrentToolCommand(cmd);
+        setPrefill(sel);
+        setMode("tool");
         if (!isShadowMounted()) {
           ensureShadow();
         }

@@ -1,33 +1,34 @@
-import { createSignal, Switch, Match, onMount, onCleanup } from "solid-js";
-import type { Command, SearchResult, Mode } from "../../src/types";
-import { matchShortcut } from "./shortcuts";
+import { Switch, Match, onMount, onCleanup } from "solid-js";
+import type { SearchResult } from "../../src/types/index";
+import { matchShortcut } from "./utils/shortcuts";
 import { defaultCommands } from "./commands";
-import { registerBridge } from "./app-bridge";
-import { destroyShadow, getShadowHost } from "./shadow-context";
+import {
+  getState,
+  setMode,
+  setCurrentResult,
+  setCurrentToolCommand,
+  setPrefill,
+  setCommandStack,
+  setCurrentList,
+} from "../../src/stores/app";
+import { destroyShadow, getShadowHost } from "./utils/shadow-context";
 import focusLock from "dom-focus-lock";
-import CmdkList from "./CmdkList";
-import CmdkTool from "./CmdkTool";
-import CmdkResult from "./CmdkResult";
-import TodoView from "./TodoView";
+import CmdkList from "./components/CmdkList";
+import CmdkTool from "./components/CmdkTool";
+import CmdkResult from "./components/CmdkResult";
+import HelpView from "./components/HelpView";
+import ShortcutsView from "./components/ShortcutsView";
+import TodoView from "./components/TodoView";
 
 let shortBuf = "";
 let shortTimer: ReturnType<typeof setTimeout> | undefined;
 
 export default function App() {
-  const [mode, setMode] = createSignal<Mode>("list");
-  const [commandStack, setCommandStack] = createSignal<Command[][]>([defaultCommands]);
-  const [currentList, setCurrentList] = createSignal(defaultCommands);
-  const [currentToolCommand, setCurrentToolCommand] = createSignal<Command | null>(null);
-  const [currentResult, setCurrentResult] = createSignal("");
-  const [prefill, setPrefill] = createSignal("");
-
-  registerBridge(setMode, setCurrentResult, setCurrentToolCommand as (cmd: Command) => void, setPrefill);
+  const state = getState();
 
   onMount(() => {
     getShadowHost().style.setProperty("--primary", "--primary-placeholder");
 
-    // Trap focus inside the command bar — Tab cycling and focus-stealing
-    // prevention (e.g. GitHub's hotkey trying to focus its search box).
     focusLock.on(getShadowHost());
 
     document.addEventListener("keydown", handleKeydown, { capture: true });
@@ -72,7 +73,7 @@ export default function App() {
   function executeCommand(result: SearchResult) {
     const cmd = result.cmd;
     if (cmd.children) {
-      setCommandStack([...commandStack(), cmd.children]);
+      setCommandStack([...state.commandStack, cmd.children]);
       setCurrentList(cmd.children);
       setMode("list");
     } else if (cmd.requiresInput) {
@@ -85,7 +86,7 @@ export default function App() {
   }
 
   function goBack() {
-    const stack = commandStack();
+    const stack = state.commandStack;
     if (stack.length <= 1) return;
     const prev = stack[stack.length - 2];
     setCommandStack(stack.slice(0, -1));
@@ -102,21 +103,21 @@ export default function App() {
   return (
     <div class="cmdk-container fade-in">
       <Switch>
-        <Match when={mode() === "list"}>
+        <Match when={state.mode === "list"}>
           <CmdkList
-            commandStack={commandStack()}
-            currentList={currentList()}
+            commandStack={state.commandStack}
+            currentList={state.currentList}
             onExecute={executeCommand}
             onBack={goBack}
             onHome={goHome}
           />
         </Match>
-        <Match when={mode() === "tool" && currentToolCommand() !== null}>
+        <Match when={state.mode === "tool" && state.currentToolCommand !== null}>
           <CmdkTool
-            command={currentToolCommand()!}
-            prefill={prefill()}
+            command={state.currentToolCommand!}
+            prefill={state.prefill}
             onSubmit={(args) => {
-              const cmd = currentToolCommand();
+              const cmd = state.currentToolCommand;
               if (!cmd?.processInput) return;
               const output = cmd.processInput(args);
               setCurrentResult(output);
@@ -126,15 +127,27 @@ export default function App() {
             onHome={goHome}
           />
         </Match>
-        <Match when={mode() === "result"}>
-          <CmdkResult
-            title={currentToolCommand()?.name || "Result"}
-            result={currentResult()}
+        <Match when={state.mode === "result" && state.currentToolCommand?.name === "Help"}>
+          <HelpView
             onBack={() => setMode("list")}
             onHome={goHome}
           />
         </Match>
-        <Match when={mode() === "todo"}>
+        <Match when={state.mode === "result" && state.currentToolCommand?.name === "Registered Shortcuts"}>
+          <ShortcutsView
+            onBack={() => setMode("list")}
+            onHome={goHome}
+          />
+        </Match>
+        <Match when={state.mode === "result"}>
+          <CmdkResult
+            title={state.currentToolCommand?.name || "Result"}
+            result={state.currentResult}
+            onBack={() => setMode("list")}
+            onHome={goHome}
+          />
+        </Match>
+        <Match when={state.mode === "todo"}>
           <TodoView
             onBack={() => setMode("list")}
             onHome={goHome}

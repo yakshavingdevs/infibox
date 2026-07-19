@@ -1,5 +1,5 @@
 import { createSignal, For, onMount } from "solid-js";
-import type { Command } from "../../src/types";
+import type { Command } from "../../src/types/index";
 import CmdkHeader from "./CmdkHeader";
 
 interface Props {

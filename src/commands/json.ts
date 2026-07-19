@@ -1,4 +1,4 @@
-import type { Command } from "../../types";
+import type { Command } from "../types/index";
 
 export const jsonCommands: Command = {
   name: "JSON Tools",

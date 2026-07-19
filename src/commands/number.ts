@@ -1,4 +1,4 @@
-import type { Command } from "../../types";
+import type { Command } from "../types/index";
 
 export const numberCommands: Command = {
   name: "Number Tools",

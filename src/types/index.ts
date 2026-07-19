@@ -33,19 +33,6 @@ export interface SearchResult {
   breadcrumb: Command[];
 }
 
-export interface GlobalState {
-  currentMode: Mode;
-  commandStack: Command[][];
-  currentList: Command[];
-  activeIndex: number;
-  currentFiltered: SearchResult[];
-  currentToolCommand: Command | null;
-  currentResult: string;
-  todoTasks: TodoTask[];
-  shortcutBuffer: string;
-  shortcutTimer?: ReturnType<typeof setTimeout>;
-}
-
 export interface MatchResult {
   exact: Command | null;
   partial: boolean;
@@ -57,5 +44,3 @@ export interface ContextMenuItem {
   contexts: string[];
   children?: ContextMenuItem[];
 }
-
-export type ProcessInputArgs = Record<string, string>;
