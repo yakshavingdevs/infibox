@@ -1,7 +1,7 @@
 :host {
     all: unset;
     display: block;
-    --primary: #000; /* Default value, overridden by settings */
+    --primary: #0d9488; /* Default value, overridden by settings */
 }
 
 * {

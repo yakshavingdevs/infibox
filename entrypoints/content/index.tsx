@@ -63,7 +63,7 @@ export default defineContentScript({
       }
     }
 
-    chrome.storage.local.get({ primaryColor: "#000000" }, (settings: Record<string, unknown>) => {
+    chrome.storage.local.get({ primaryColor: "#0d9488" }, (settings: Record<string, unknown>) => {
       applyColor(settings.primaryColor as string);
     });
 

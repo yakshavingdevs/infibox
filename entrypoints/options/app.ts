@@ -5,7 +5,7 @@ interface Settings {
 
 (async () => {
     const DEFAULT_SETTINGS: Record<string, unknown> = {
-        primaryColor: "#000000",
+        primaryColor: "#0d9488",
         enableContextMenus: true,
     };
 
