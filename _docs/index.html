@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infibox - Developer Productivity Extension</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="../public/img/infibox-48.png" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <img src="../public/img/infibox-256.png" alt="Infibox" class="logo" />
+      <h1>Infibox</h1>
+      <p class="tagline">The ultimate browser extension for developer productivity</p>
+      <div class="hero-actions">
+        <a href="#install" class="btn btn-primary">Install Extension</a>
+        <a href="https://github.com/yakshavingdevs/infibox" class="btn btn-secondary">View on GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2>What is Infibox?</h2>
+      <p>
+        Infibox is a Chrome extension that brings a <strong>Cmd+K-style command palette</strong>
+        to every web page. Inspired by tools like <a href="https://gchq.github.io/CyberChef/">CyberChef</a>,
+        it gives you instant access to dozens of developer utilities — encode/decode, hashing, JSON formatting,
+        text manipulation, number conversion, and more — without leaving your current tab.
+      </p>
+      <p>
+        Press <kbd>Ctrl+Shift+K</kbd> anywhere, type what you need, and get results instantly.
+        Right-click on any text to access utilities directly from the context menu.
+      </p>
+    </div>
+  </section>
+
+  <section id="features" class="section section-dark">
+    <div class="container">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Command Palette</h3>
+          <p>Press <kbd>Ctrl+Shift+K</kbd> on any page to open a fuzzy-searchable command palette. Navigate with arrow keys, hit Enter to run.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Text &amp; String Tools</h3>
+          <p>Trim, change case, replace, split, join, count, repeat, pad, extract lines, reverse, substring — 20+ text utilities.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Encode / Decode</h3>
+          <p>Base64, URL encode/decode, HTML escape/unescape — all the encoding tools you reach for daily.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Hashing</h3>
+          <p>Simple hash, FNV-1a, djb2, sdbm, and Murmur3-like — hash text without opening a terminal.</p>
+        </div>
+        <div class="feature-card">
+          <h3>JSON Tools</h3>
+          <p>Parse, format, and stringify JSON instantly. Great for debugging API responses.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Number Conversion</h3>
+          <p>Convert between decimal, hex, and binary on the fly.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Time Tools</h3>
+          <p>Get the current Unix timestamp or format any timestamp into a readable date.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Context Menu</h3>
+          <p>Right-click selected text on any page to access Infibox utilities — no keyboard needed.</p>
+        </div>
+        <div class="feature-card">
+          <h3>To-Do List</h3>
+          <p>Built-in to-do manager accessible from the command palette or the options dashboard. Save tasks by right-clicking.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Omnibox</h3>
+          <p>Type <code>infi</code> in the address bar and press <kbd>Tab</kbd> to quickly search and run commands.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Customizable</h3>
+          <p>Set your own accent color, toggle context menus on/off — all from the preferences dashboard.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Style Isolated</h3>
+          <p>The command palette renders in a Shadow DOM, so it never conflicts with the styles of the page you're on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install" class="section">
+    <div class="container">
+      <h2>Installation</h2>
+      <p class="note">Infibox is in active development and not yet published to the Chrome Web Store. Install it as an unpacked extension.</p>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <div>
+            <h3>Clone the repo</h3>
+            <pre><code>git clone https://github.com/yakshavingdevs/infibox.git
+cd infibox</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <div>
+            <h3>Install dependencies</h3>
+            <pre><code>npm install</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <div>
+            <h3>Build the extension</h3>
+            <pre><code>npm run build</code></pre>
+            <p>Or use <code>npm run dev</code> for development with hot module replacement.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-number">4</span>
+          <div>
+            <h3>Load into Chrome</h3>
+            <ol>
+              <li>Open <a href="chrome://extensions/" target="_blank">chrome://extensions/</a></li>
+              <li>Enable <strong>Developer mode</strong> (toggle in top-right)</li>
+              <li>Click <strong>Load unpacked</strong></li>
+              <li>Select the <code>.output/</code> (dev) or <code>dist/</code> (production) directory</li>
+            </ol>
+            <p class="tip"><strong>Tip:</strong> Pin the extension to the toolbar for quick access to the dashboard.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="prereqs-heading">Prerequisites</h3>
+      <ul class="prereqs">
+        <li>Chrome or any Chromium-based browser</li>
+        <li>Node.js 18+ and npm</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="usage" class="section section-dark">
+    <div class="container">
+      <h2>Usage</h2>
+      <div class="usage-grid">
+        <div class="usage-item">
+          <div class="usage-key">
+            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>
+          </div>
+          <p>Open the command palette on any page</p>
+        </div>
+        <div class="usage-item">
+          <div class="usage-key">
+            <kbd>↑</kbd> <kbd>↓</kbd> <kbd>Enter</kbd>
+          </div>
+          <p>Navigate and select commands</p>
+        </div>
+        <div class="usage-item">
+          <span class="usage-key">Right-click</span>
+          <p>Select text &rarr; right-click &rarr; Infibox submenu</p>
+        </div>
+        <div class="usage-item">
+          <span class="usage-key">Omnibox</span>
+          <p>Type <code>infi</code> in the address bar, press <kbd>Tab</kbd></p>
+        </div>
+        <div class="usage-item">
+          <span class="usage-key">Shortcuts</span>
+          <p>Type <code>b64</code>, <code>json</code>, <code>hash</code>, etc. in the palette</p>
+        </div>
+        <div class="usage-item">
+          <span class="usage-key">Ext. icon</span>
+          <p>Click the toolbar icon to open the popup &rarr; Dashboard</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="development" class="section">
+    <div class="container">
+      <h2>Development</h2>
+      <p>Infibox uses <a href="https://wxt.dev">WXT</a> (with Vite under the hood), <a href="https://www.solidjs.com/">SolidJS</a>, and TypeScript.</p>
+      <div class="code-block">
+        <pre><code>npm run dev      # Start dev server with HMR
+npm run build    # Production build
+npm run preview  # Preview production build</code></pre>
+      </div>
+      <p>
+        Check out <a href="https://github.com/yakshavingdevs/infibox/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+        to get involved.
+      </p>
+      <a href="https://github.com/yakshavingdevs/infibox" class="btn btn-primary">Contributing on GitHub</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Built by <a href="https://github.com/yakshavingdevs">Yak Shaving Devs</a> &middot;
+        MIT Licensed &middot;
+        <a href="https://github.com/yakshavingdevs/infibox">GitHub</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
