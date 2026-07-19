@@ -8,37 +8,106 @@
     <link rel="stylesheet" href="/css/options.css">
 </head>
 <body>
-    <div class="container">
-        <header class="dashboard-header">
-            <div class="header-left">
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
                 <div class="logo">i</div>
-                <h1>Infibox Dashboard</h1>
+                <span class="logo-text">Infibox</span>
             </div>
-        </header>
-
-        <section class="card">
-            <h2>Settings</h2>
-            <form id="settings-form">
-                <div class="form-section">
-                    <label for="primary-color">Primary Color</label>
-                    <p class="field-desc">Choose the accent color used throughout the extension.</p>
-                    <input type="color" id="primary-color" name="primary-color" value="#0d9488">
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="preferences">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M12 1v6m0 6v6m8.66-15l-5.2 3m-7.92 0L2.34 4M22.66 19l-5.2-3m-7.92 0l-5.2 3" />
+                    </svg>
+                    <span>Preferences</span>
+                </button>
+                <button class="nav-item" data-view="todo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 11l3 3L22 4" />
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                    </svg>
+                    <span>To-Do</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="shortcut-hint">
+                    <kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>K</kbd>
+                    <span class="shortcut-label">Open command palette</span>
                 </div>
-                <div class="form-section">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="enable-context-menus" name="enable-context-menus">
-                        <span>Enable Context Menus</span>
-                    </label>
-                    <p class="field-desc">Add Infibox utilities to the right-click context menu on any page.</p>
-                </div>
-                <button type="submit">Save Settings</button>
-            </form>
-        </section>
+            </div>
+        </aside>
 
-        <section class="card">
-            <h2>Quick Start</h2>
-            <p class="field-desc">Use <kbd>Ctrl+Shift+K</kbd> on any page to open the Infibox command palette.</p>
-        </section>
+        <main class="content">
+            <div id="view-preferences" class="view active">
+                <div class="view-header">
+                    <h1>Preferences</h1>
+                    <p class="view-desc">Customize your Infibox experience</p>
+                </div>
+                <div class="card">
+                    <h2>Appearance</h2>
+                    <form id="settings-form">
+                        <div class="form-section">
+                            <label for="primary-color">Accent Color</label>
+                            <p class="field-desc">Choose the accent color used throughout the extension.</p>
+                            <div class="color-picker-wrapper">
+                                <input type="color" id="primary-color" name="primary-color" value="#0d9488">
+                                <span class="color-value" id="color-value">#0d9488</span>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="enable-context-menus" name="enable-context-menus">
+                                <div class="checkbox-content">
+                                    <span>Context Menus</span>
+                                    <p class="field-desc">Add Infibox utilities to the right-click context menu.</p>
+                                </div>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-save">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                <polyline points="17 21 17 13 7 13 7 21" />
+                                <polyline points="7 3 7 8 15 8" />
+                            </svg>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h2>Keyboard Shortcut</h2>
+                    <p class="field-desc">Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> on any page to open the Infibox command palette. You can also type <kbd>infi</kbd> in the address bar.</p>
+                </div>
+            </div>
+
+            <div id="view-todo" class="view">
+                <div class="view-header">
+                    <h1>To-Do</h1>
+                    <p class="view-desc">Manage your tasks and saved items</p>
+                </div>
+                <div class="card">
+                    <div class="todo-input-wrapper">
+                        <input type="text" id="todo-input" class="todo-input" placeholder="Add a new task..." />
+                        <button id="todo-add" class="btn-add">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="todo-stats" id="todo-stats"></div>
+                    <ul class="todo-list" id="todo-list"></ul>
+                    <div class="todo-empty" id="todo-empty">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 11l3 3L22 4" />
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                        </svg>
+                        <p>No tasks yet</p>
+                        <span>Add your first task above</span>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
     <script type="module" src="./app.js"></script>
 </body>
