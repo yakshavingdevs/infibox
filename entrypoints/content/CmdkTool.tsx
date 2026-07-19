@@ -55,18 +55,18 @@ export default function CmdkTool(props: Props) {
               <>
                 <label for={`kwarg-${kwarg.name}`}>{kwarg.name} ({kwarg.help}):</label>
                 {kwarg.type === "textarea" ? (
-                  <textarea id={`kwarg-${kwarg.name}`} name={kwarg.name} class="cmdk-input">{String(kwarg.default ?? "")}</textarea>
+                  <textarea id={`kwarg-${kwarg.name}`} name={kwarg.name} class="cmdk-input" onKeyDown={(e) => e.stopPropagation()}>{String(kwarg.default ?? "")}</textarea>
                 ) : (
-                  <input type={kwarg.type} id={`kwarg-${kwarg.name}`} name={kwarg.name} value={String(kwarg.default ?? "")} class="cmdk-input" />
+                  <input type={kwarg.type} id={`kwarg-${kwarg.name}`} name={kwarg.name} value={String(kwarg.default ?? "")} class="cmdk-input" onKeyDown={(e) => e.stopPropagation()} />
                 )}
               </>
             )}
           </For>
           <label for="tool-text">Text:</label>
           {textType === "textarea" ? (
-            <textarea ref={textAreaRef} id="tool-text" name="text" class="cmdk-input" placeholder={command.usage}></textarea>
+            <textarea ref={textAreaRef} id="tool-text" name="text" class="cmdk-input" placeholder={command.usage} onKeyDown={(e) => e.stopPropagation()}></textarea>
           ) : (
-            <input ref={textInputRef} type={command.type} id="tool-text" name="text" class="cmdk-input" placeholder={command.usage} />
+            <input ref={textInputRef} type={command.type} id="tool-text" name="text" class="cmdk-input" placeholder={command.usage} onKeyDown={(e) => e.stopPropagation()} />
           )}
           <p style="color: red">{error()}</p>
           <button type="submit">Execute</button>

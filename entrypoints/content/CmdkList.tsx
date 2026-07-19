@@ -27,6 +27,7 @@ export default function CmdkList(props: Props) {
   const filtered = () => results();
 
   function onKeyDown(e: KeyboardEvent) {
+    e.stopPropagation();
     if (e.key === "Escape") {
       e.preventDefault();
       return; // handled by document listener in App
@@ -64,7 +65,7 @@ export default function CmdkList(props: Props) {
         class="cmdk-input"
         placeholder="Type a command (? for help)..."
         value={query()}
-        onInput={(e) => { setQuery(e.currentTarget.value); setActiveIndex(0); }}
+        onInput={(e) => { e.stopPropagation(); setQuery(e.currentTarget.value); setActiveIndex(0); }}
         onKeyDown={onKeyDown}
       />
       <ul class="cmdk-list">

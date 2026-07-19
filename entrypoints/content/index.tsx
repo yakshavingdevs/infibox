@@ -68,6 +68,7 @@ export default defineContentScript({
     document.addEventListener("keydown", (e) => {
       if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "k") {
         e.preventDefault();
+        e.stopPropagation();
         if (isShadowMounted()) {
           destroyShadow();
         } else {

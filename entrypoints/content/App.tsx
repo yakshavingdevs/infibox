@@ -35,6 +35,7 @@ export default function App() {
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === "Escape") {
       e.preventDefault();
+      e.stopPropagation();
       destroyShadow();
       return;
     }
@@ -45,6 +46,7 @@ export default function App() {
       const { exact } = matchShortcut(shortBuf, defaultCommands);
       if (exact) {
         e.preventDefault();
+        e.stopPropagation();
         shortBuf = "";
         if (exact.children) {
           setCommandStack([exact.children]);
