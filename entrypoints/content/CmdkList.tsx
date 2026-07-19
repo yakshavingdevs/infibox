@@ -65,8 +65,8 @@ export default function CmdkList(props: Props) {
         class="cmdk-input"
         placeholder="Type a command (? for help)..."
         value={query()}
-        onInput={(e) => { e.stopPropagation(); setQuery(e.currentTarget.value); setActiveIndex(0); }}
-        onKeyDown={onKeyDown}
+        onInput={(e) => { setQuery(e.currentTarget.value); setActiveIndex(0); }}
+        on:keydown={onKeyDown}
       />
       <ul class="cmdk-list">
         <For each={filtered()}>

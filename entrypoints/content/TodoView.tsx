@@ -52,7 +52,7 @@ export default function TodoView(props: Props) {
           placeholder="Add a new task or link..."
           value={input()}
           onInput={(e: InputEvent) => setInput((e.currentTarget as HTMLInputElement).value)}
-          onKeyDown={(e: KeyboardEvent) => {
+          on:keydown={(e: KeyboardEvent) => {
             e.stopPropagation();
             if (e.key === "Enter") addTask();
             else if (e.key === "Escape") props.onBack();

@@ -41,8 +41,16 @@ export default defineContentScript({
             if (e.target === container) destroyShadow();
           });
 
-          initShadow(shadowRoot, wrapper as HTMLElement, () => ui.remove());
-          render(() => <App />, container);
+          for (const type of ["keydown", "keypress", "keyup"]) {
+            shadowRoot.addEventListener(type, (e) => e.stopPropagation());
+          }
+
+          const disposer: { fn?: () => void } = {};
+          initShadow(shadowRoot, wrapper as HTMLElement, () => {
+            disposer.fn?.();
+            ui.remove();
+          });
+          disposer.fn = render(() => <App />, container);
           container.classList.add("open");
         },
       });

@@ -4,6 +4,7 @@ import { matchShortcut } from "./shortcuts";
 import { defaultCommands } from "./commands";
 import { registerBridge } from "./app-bridge";
 import { destroyShadow, getShadowHost } from "./shadow-context";
+import focusLock from "dom-focus-lock";
 import CmdkList from "./CmdkList";
 import CmdkTool from "./CmdkTool";
 import CmdkResult from "./CmdkResult";
@@ -25,9 +26,14 @@ export default function App() {
   onMount(() => {
     getShadowHost().style.setProperty("--primary", "--primary-placeholder");
 
+    // Trap focus inside the command bar — Tab cycling and focus-stealing
+    // prevention (e.g. GitHub's hotkey trying to focus its search box).
+    focusLock.on(getShadowHost());
+
     document.addEventListener("keydown", handleKeydown, { capture: true });
 
     onCleanup(() => {
+      focusLock.off(getShadowHost());
       document.removeEventListener("keydown", handleKeydown, { capture: true });
     });
   });
